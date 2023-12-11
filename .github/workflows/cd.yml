@@ -27,22 +27,21 @@ jobs:
         username: ${{vars.AZURE_SERVICE_PRINCIPAL_NAME}}
         password: ${{secrets.AZURE_SERVICE_PRINCIPAL_PASSWORD}}
         tenant: ${{vars.AZURE_TENANT_ID}}
+
+    - name: install cli
+      run: |
+        npm install -g @microsoft/teamsfx-cli@2.0.2
     
-    # - name: Deploy to hosting environment
-    #   uses: OfficeDev/teamsfx-cli-action@v1
-    #   with:
-    #     cli-version: ${{env.TEAMSFX_CLI_VERSION}}
-    #     commands: deploy
-    #     env: ${{env.TEAMSFX_ENV_NAME}}
+  
+    - name: Deploy to hosting environment
+      run: |
+        teamsfx deploy --env ${{env.TEAMSFX_ENV_NAME}}
 
-    - name: zip app package
-      uses: OfficeDev/teamsfx-cli-action@v1
-      with:
-        cli-version: ${{env.TEAMSFX_CLI_VERSION}}
-        commands: package
-        env: ${{env.TEAMSFX_ENV_NAME}}
+    - name: Package app
+      run: |
+        teamsfx package --env ${{env.TEAMSFX_ENV_NAME}}
 
-    - name: 'upload zip'
+    - name: upload zip
       uses: actions/upload-artifact@v2
       with:
         name: appPackage
