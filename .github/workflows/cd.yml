@@ -28,12 +28,12 @@ jobs:
         password: ${{secrets.AZURE_SERVICE_PRINCIPAL_PASSWORD}}
         tenant: ${{vars.AZURE_TENANT_ID}}
     
-    - name: Deploy to hosting environment
-      uses: OfficeDev/teamsfx-cli-action@v1
-      with:
-        cli-version: ${{env.TEAMSFX_CLI_VERSION}}
-        commands: deploy
-        env: ${{env.TEAMSFX_ENV_NAME}}
+    # - name: Deploy to hosting environment
+    #   uses: OfficeDev/teamsfx-cli-action@v1
+    #   with:
+    #     cli-version: ${{env.TEAMSFX_CLI_VERSION}}
+    #     commands: deploy
+    #     env: ${{env.TEAMSFX_ENV_NAME}}
 
     - name: zip app package
       uses: OfficeDev/teamsfx-cli-action@v1
