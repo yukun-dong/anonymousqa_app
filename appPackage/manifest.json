@@ -40,7 +40,16 @@
                         "team",
                         "groupchat"
                     ],
-                    "commands": []
+                    "commands":[
+                        {
+                          "title":"list",
+                          "description":"list all questions"
+                        },
+                        {
+                          "title":"ask",
+                          "description":"ask a question"
+                        }
+                    ]
                 }
             ]
         }
