@@ -8,6 +8,7 @@ jobs:
     env: 
       TEAMSFX_ENV_NAME: 'test'
       TEAMSFX_CLI_VERSION: 2.*
+      CI_ENABLED: true
 
     steps:
     - name: 'Checkout Github Action' 
