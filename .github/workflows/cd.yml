@@ -19,21 +19,14 @@ jobs:
       with:
         node-version: '18.x'
 
-    - name: Login Azure by service principal 
-      uses: OfficeDev/teamsfx-cli-action@v1
-      with:
-        cli-version: ${{env.TEAMSFX_CLI_VERSION}}
-        commands: account login azure 
-        service-principal: true
-        username: ${{vars.AZURE_SERVICE_PRINCIPAL_NAME}}
-        password: ${{secrets.AZURE_SERVICE_PRINCIPAL_PASSWORD}}
-        tenant: ${{vars.AZURE_TENANT_ID}}
-
     - name: install cli
       run: |
         npm install -g @microsoft/teamsfx-cli@2.0.2
-    
-  
+
+    - name: Login Azure by service principal 
+      run: |
+        teamsfx auth login azure -i false --service-principal -u ${{vars.AZURE_SERVICE_PRINCIPAL_NAME}}  -p ${{secrets.AZURE_SERVICE_PRINCIPAL_PASSWORD}} --tenant ${{vars.AZURE_TENANT_ID}}
+
     - name: Deploy to hosting environment
       run: |
         teamsfx deploy --env ${{env.TEAMSFX_ENV_NAME}}
