@@ -24,7 +24,10 @@ jobs:
 
     - name: Login Azure by service principal 
       run: |
-        teamsfx account login azure --service-principal -u ${{vars.AZURE_SERVICE_PRINCIPAL_NAME}}  -p ${{secrets.AZURE_SERVICE_PRINCIPAL_PASSWORD}} --tenant ${{vars.AZURE_TENANT_ID}}
+        teamsfx account login azure --service-principal \
+        -u ${{vars.AZURE_SERVICE_PRINCIPAL_NAME}}  \
+        -p ${{secrets.AZURE_SERVICE_PRINCIPAL_PASSWORD}} \
+        --tenant ${{vars.AZURE_TENANT_ID}}
 
     - name: Deploy to hosting environment
       run: |
