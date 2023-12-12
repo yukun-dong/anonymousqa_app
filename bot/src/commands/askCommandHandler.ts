@@ -19,7 +19,7 @@ export class AskCommandHandler implements TeamsFxBotCommandHandler {
 
     // Render your adaptive card for reply message
     const cardData: CardData = {
-      title: "Welcome to the qa bot!!",
+      title: "Welcome to the qa bot!!?",
       body: "Please fill the form below and click the 'Submit' button",
       questionUrl: process.env.QUESTIONURL,
     };
