@@ -24,7 +24,8 @@ jobs:
 
     - name: 'zip artifact for deployment'
       run: |
-        zip -r deploy.zip . 
+        cd bot
+        zip -r ../deploy.zip ./
 
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
