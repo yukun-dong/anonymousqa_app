@@ -22,16 +22,17 @@ jobs:
       run: |
         npm install -g @microsoft/teamsfx-cli@2.0.2
 
-    - name: Login Azure by service principal 
-      run: |
-        teamsfx account login azure --service-principal \
-        -u ${{vars.AZURE_SERVICE_PRINCIPAL_NAME}}  \
-        -p ${{secrets.AZURE_SERVICE_PRINCIPAL_PASSWORD}} \
-        --tenant ${{vars.AZURE_TENANT_ID}}
 
-    - name: Deploy to hosting environment
-      run: |
-        teamsfx deploy --env ${{env.TEAMSFX_ENV_NAME}}
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.cred }}
+
+    - name: 'Run Azure webapp deploy action using azure RBAC'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: anonymousqf54baabot
+        package: .
 
     - name: Package app
       run: |
